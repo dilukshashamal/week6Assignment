@@ -1,11 +1,13 @@
 import os
 from paddleocr import PaddleOCR
+import json
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "../data")
 INPUT_DIR = os.path.join(DATA_DIR, "input")
 OUTPUT_DIR = os.path.join(DATA_DIR, "output")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+EXPECTED_VALUES_FILE = os.path.join(DATA_DIR, "config/expected_values.json")
 
 # OCR Settings
 OCR = PaddleOCR(use_angle_cls=True, lang="en")
@@ -64,4 +66,19 @@ FUZZY_MATCH_THRESHOLD = 85  # Threshold for fuzzy matching in case fields vary s
 
 # Others
 DEFAULT_CURRENCY_SYMBOL = "$"  # Currency symbol to be used, if applicable
+
+def load_expected_values():
+    """Loads expected values from a JSON configuration file."""
+    try:
+        with open(EXPECTED_VALUES_FILE, 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print(f"Expected values file not found at {EXPECTED_VALUES_FILE}")
+        return {}
+    except json.JSONDecodeError:
+        print(f"Error decoding JSON from {EXPECTED_VALUES_FILE}")
+        return {}
+
+# Load expected values once and assign to a variable
+EXPECTED_VALUES = load_expected_values()
 

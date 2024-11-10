@@ -45,6 +45,6 @@ def calculate_match_score(text, keywords):
 
 # Testing functionality
 if __name__ == "__main__":
-    test_file = os.path.join("data/input", "sample_document.pdf")  # Example file path
+    test_file = os.path.join("data/input", "bank_statement.pdf")  # Example file path
     classification_result = classify_document(test_file)
     print("Document Classification:", classification_result)
