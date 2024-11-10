@@ -1,5 +1,7 @@
 import json
 import logging
+import fitz 
+from PIL import Image
 import os
 import pandas as pd
 from config import JSON_INDENT, LOGGING_LEVEL, LOG_FILE, BALANCE_VALIDATION_TOLERANCE
@@ -69,3 +71,29 @@ def log_and_flag_discrepancies(discrepancies, output_path):
     else:
         logging.info("No discrepancies to flag.")
 
+def pdf_to_png(pdf_path, output_folder):
+    """
+    Convert each page of a PDF into a PNG image and save them in the specified output folder.
+    
+    Parameters:
+    - pdf_path (str): Path to the input PDF file.
+    - output_folder (str): Folder to save the output PNG files.
+    
+    Returns:
+    - List of file paths for the generated PNG images.
+    """
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    pdf_document = fitz.open(pdf_path)
+    image_paths = []
+    
+    for page_num in range(len(pdf_document)):
+        page = pdf_document.load_page(page_num)
+        pix = page.get_pixmap()
+        output_image_path = os.path.join(output_folder, f"page_{page_num + 1}.png")
+        pix.save(output_image_path)
+        image_paths.append(output_image_path)
+
+    pdf_document.close()
+    return image_paths
