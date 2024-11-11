@@ -1,5 +1,4 @@
 import fitz  
-# from PIL import Image
 import os
 
 def pdf_to_images(pdf_path, output_dir="data", zoom=2):
@@ -31,7 +30,6 @@ def pdf_to_images(pdf_path, output_dir="data", zoom=2):
     return image_paths
 
 if __name__ == "__main__":
-    # Example usage
-    pdf_path = "data/bank_statement.pdf"  # Path to your PDF file
+    pdf_path = "data/bank_statement.pdf"  
     images = pdf_to_images(pdf_path)
     print("Generated images:", images)
