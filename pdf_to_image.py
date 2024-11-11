@@ -1,5 +1,5 @@
 import fitz  
-from PIL import Image
+# from PIL import Image
 import os
 
 def pdf_to_images(pdf_path, output_dir="data", zoom=2):
