@@ -13,6 +13,7 @@ ocr = PaddleOCR(
     lang="en",
     use_gpu=False,
     show_log=False,
+    use_angle_cls=False,
 )
 
 image_processor = AutoImageProcessor.from_pretrained(
@@ -214,13 +215,7 @@ def extract_tables_from_images(image_paths):
                 # Store the extracted table in the dictionary
                 all_tables[f"page_{page_num}"] = json_output
 
-                # Save to a JSON file named after the image
-                json_file_name = f"{os.path.splitext(os.path.basename(image_path))[0]}_table.json"
-                json_output_path = os.path.join(os.path.dirname(image_path), json_file_name)
-                with open(json_output_path, "w") as json_file:
-                    json.dump(json_output, json_file)
-
-                print(f"Extracted table saved to {json_output_path}")
+                print(f"Extracted table from {image_path}")
 
     # Save all extracted tables to a single JSON file
     all_tables_output_path = os.path.join(os.path.dirname(image_paths[0]), "table_extraction_result.json")
