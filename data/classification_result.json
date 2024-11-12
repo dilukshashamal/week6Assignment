@@ -1,6 +1,5 @@
 {
     "page_1": "bank_statement",
-    "page_2": "bank_statement",
-    "page_3": "bank_statement",
-    "page_4": "bank_statement"
+    "page_2": "others",
+    "page_3": "bank_statement"
 }

@@ -3,16 +3,6 @@ import re
 import os
 
 def extract_key_values_from_page(page_text, document_type):
-    """
-    Extracts key-value pairs from a single page's text content based on document type.
-
-    Args:
-        page_text (str): Extracted text from a single page.
-        document_type (str): Type of document (e.g., 'bank_statement', 'check', 'salary_slip').
-
-    Returns:
-        dict: Extracted key-value pairs for the page.
-    """
     extracted_data = {}
 
     # Define regular expression patterns for each document type
@@ -45,17 +35,6 @@ def extract_key_values_from_page(page_text, document_type):
     return extracted_data
 
 def extract_key_values(ocr_json_path, classification_json_path, output_dir="data"):
-    """
-    Extracts key-value pairs from each page in a document and saves results as JSON.
-
-    Args:
-        ocr_json_path (str): Path to the JSON file containing OCR results.
-        classification_json_path (str): Path to the JSON file with page-wise classification results.
-        output_dir (str): Directory where the key-value extraction results will be saved.
-
-    Returns:
-        str: Path to the JSON file containing key-value extraction results.
-    """
     # Load OCR data and classification results
     with open(ocr_json_path, "r", encoding="utf-8") as file:
         ocr_data = json.load(file)
@@ -89,8 +68,7 @@ def extract_key_values(ocr_json_path, classification_json_path, output_dir="data
     return key_value_result_path
 
 if __name__ == "__main__":
-    # Example usage
-    ocr_json_path = "data/ocr_results.json"  # Path to OCR JSON results
-    classification_json_path = "data/classification_result.json"  # Path to page-wise classification results
+    ocr_json_path = "data/ocr_results.json"  
+    classification_json_path = "data/classification_result.json"  
     key_value_json_path = extract_key_values(ocr_json_path, classification_json_path)
     print("Key-value extraction result saved to:", key_value_json_path)

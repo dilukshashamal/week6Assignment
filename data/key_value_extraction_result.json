@@ -1,15 +1,8 @@
 {
     "page_1": {
-        "account_number": "254100541522695",
-        "total_balance": "4"
+        "total_balance": "47315.01",
+        "opening_balance": "47315.01"
     },
-    "page_2": {
-        "account_number": "1234567890"
-    },
-    "page_3": {
-        "total_balance": "3,898.57"
-    },
-    "page_4": {
-        "total_balance": "01"
-    }
+    "page_2": {},
+    "page_3": {}
 }
