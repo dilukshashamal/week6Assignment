@@ -3,15 +3,7 @@ import re
 import os
 
 def classify_page_text(page_text):
-    """
-    Classifies a single page based on its text content.
 
-    Args:
-        page_text (str): Extracted text from a single page.
-
-    Returns:
-        str: Classification type (e.g., 'bank statement', 'check', 'salary slip', or 'others').
-    """
     # Define keyword sets for each document type
     keywords = {
         "bank_statement": ["account number", "transaction", "balance", "deposit", "withdrawal", "statement"],
